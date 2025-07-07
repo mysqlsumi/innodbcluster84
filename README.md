@@ -30,7 +30,7 @@ How to set up mysql innodb cluster with mysql 8.4 version
 ![image](https://github.com/user-attachments/assets/487358b5-e062-421a-9f7b-e35d65b3fd65)
 
 ## 9.  클러스터의 상태 확인: myc.status()
-<img width="736" alt="image" src="https://github.com/user-attachments/assets/ab6e25d0-d20c-43fe-a17d-ffcd75ab438a" />
+![image](https://github.com/user-attachments/assets/64b9ae4a-bde0-4f36-8271-48acb66e4a1c)
 
 ## 10. MySQL 라우터 설치 (Generic tar 이용)
 ![image](https://github.com/user-attachments/assets/d8ada432-61a4-4805-ae6a-af22709476ed)

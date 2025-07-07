@@ -16,8 +16,19 @@ How to set up mysql innodb cluster with mysql 8.4 version
 ## 4.  클러스터의 상태 확인: myc.status()
 ![image](https://github.com/user-attachments/assets/b6436e82-f71c-48c4-bc46-aebc4935a940)
 
- ## 5. 2번 노드 대해서도 설정 추가: dba.configureInstance 
+## 5. 2번 노드 대해서도 설정 추가: dba.configureInstance 
 <img width="729" alt="image" src="https://github.com/user-attachments/assets/1dd6b88d-8b37-4e33-abf6-5dee2cb7cf99" />
 
-## 6. 클러스터에 2번노드 추가
+## 6. 클러스터에 2번노드 추가 : Clone 방식
 ![image](https://github.com/user-attachments/assets/2e3c68f1-4a87-461b-ae80-c529e540d74d)
+<img width="732" alt="image" src="https://github.com/user-attachments/assets/2b38deab-b57d-44da-9d1d-6d39935ac0e4" />
+
+## 7. 2번 노드 대해서도 설정 추가: dba.configureInstance 
+<img width="737" alt="image" src="https://github.com/user-attachments/assets/a689fa11-18cc-49c3-b441-c1ee8af9f0ef" />
+
+## 8. 클러스터에 3번노드 추가
+![image](https://github.com/user-attachments/assets/487358b5-e062-421a-9f7b-e35d65b3fd65)
+
+## 9.  클러스터의 상태 확인: myc.status()
+<img width="736" alt="image" src="https://github.com/user-attachments/assets/ab6e25d0-d20c-43fe-a17d-ffcd75ab438a" />
+

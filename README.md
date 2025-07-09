@@ -1,5 +1,9 @@
 # innodbcluster84
 How to set up mysql innodb cluster with mysql 8.4 version
+InnoDB Cluster 가 나온지도 꽤 오래되었습니다. 세계의 많은 고객들이 사용하고 있습니다.
+InnoDB Cluster는 최소 3개 노드로 구성이 됩니다. 아키텍처는 아래와 같은데요. 3개의 컴포넌트인 Group Replication, MySQL Router, MySQL Shell로 구성되어 있습니다.
+<img width="877" alt="image" src="https://github.com/user-attachments/assets/d6cf29ca-b1e8-48ac-985e-beb42b6df072" />
+
 
 ## 1. 클러스터 생성에 필요한 파라미터 추가 : dba.configureInstance("admin@vm-1:3306") 
 ![image](https://github.com/user-attachments/assets/f079c02a-348c-4e52-ba59-61580b200e26)
@@ -44,9 +48,25 @@ How to set up mysql innodb cluster with mysql 8.4 version
 ## 13. 라우터 인스턴스 확인
 ![image](https://github.com/user-attachments/assets/f618bf2e-4db8-4dfd-9fbd-3a76dc47313c)
 
+
 ## 14. 라우터 동작 테스트
 ![image](https://github.com/user-attachments/assets/5bb52ce5-203a-446d-88ec-9a82fa512da9)
 
 
+## 15. 주의해야 할 사항
+### 15-1. 시작 및 종료
+MySQL InnoDB Cluster의 경우, Sigle Primary 모드를 권장합니다. 1개의 R/W 노드와 2개의 R/O 노드로 구성됩니다.
+그래서 시작할 때는  Primary(Master) 노드를 먼저 시작하고 나머지 Secondary 노드를 시작합니다.
+하지만 종료 때는 반대로 Secondary 노드를 모두 종료하고 프로세스가 내려간 것도 확인 후 Primary 노드를 종료합니다.
+
+### 15-2. 전체 클러스터가 내려간 경우(유지보수 작업 등) 
+장애이든 아니면 유지보수 작업이든 전체 클러스터가 내려간 경우에는 반드시 아래 API를 이용해서 Cluster를 시작합니다.
+dba.rebootClusterFromCompleteOutage()
+
+### 15-3. 한개 노드가 살아있는데 R/O로 동작되는 경우 : no quorum 인 상태
+데이터 정합성을 위해 2개 노드가 연결이 안되거나 내려간 경우에는 한개 노드는 R/O로 변경되서 서비스됩니다. 쓰기는 안되는 상태입니다.
+이 경우, 1개 노드로 서비스하기 위해 Primary 로 동작하도록 변경할 경우 반드시 아래의 API를 이용해서 진행합니다.
+var c = dba.getCluster()
+c.forceQuorumUsingPartitionOf('사용자@host명:포트')
 
 
